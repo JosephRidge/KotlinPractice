@@ -109,4 +109,12 @@ Note that if you try and place the navigation safe guard dependencies in the app
                 })
               ```
 
-
+    - Setting up the NumbersViewModelFactory
+       ```
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(NumbersViewModel::class.java)) {
+                return NumbersViewModel(finalScore) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+       ```
