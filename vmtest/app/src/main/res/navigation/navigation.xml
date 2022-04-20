@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/numbers">
+
+    <fragment
+        android:id="@+id/finalcount"
+        android:name="com.jayr.vmtest.ui.finalcount.Finalcount"
+        android:label="finalcount_fragment"
+        tools:layout="@layout/finalcount_fragment" >
+        <action
+            android:id="@+id/action_finalcount_to_numbers"
+            app:destination="@id/numbers" />
+    </fragment>
+    <fragment
+        android:id="@+id/numbers"
+        android:name="com.jayr.vmtest.ui.numbers.Numbers"
+        android:label="numbers_fragment"
+        tools:layout="@layout/numbers_fragment" >
+        <action
+            android:id="@+id/action_numbers_to_finalcount"
+            app:destination="@id/finalcount" />
+    </fragment>
+</navigation>
