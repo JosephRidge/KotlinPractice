@@ -77,4 +77,36 @@ Now Clean and Rebuild  your project , to allow the Data binding class to generat
         ```
 Note that if you try and place the navigation safe guard dependencies in the apps build gradle file it will not work but instead generate conflicts error.fragment
 
-## Setting up 
+## Setting up The Variables, observables and observers
+    - The variables and observables are set in the view model as the observers in the ui controller, the fragment.
+    - Inside the View model we will encapsulate the Livedata :
+        ```
+        private val _numbers = MutableLiveData<Int>() // Scoped in the View model
+             val number : LiveData<Int> //This is the observables exposed to the UI controller using the backing properties ie getters and setters
+                get() = _numbers
+                ```
+    -  Inside the View Fragment will initialize the data binding object , having set up your dataBinding object well .
+        ```
+        private lateinit var binding:HomeFragmentBinding // Variable initialization
+         // in onCreateView() method :
+         binding  = DataBindingUtil.inflate(
+                     inflater,
+                     R.layout.home_fragment,
+                     container,
+                     false)
+                     ```
+    - Initialize the viewModel object :
+            ` viewModel = ViewModelProvider(this).get(HomeViewModel::class.java) `
+
+    - Initialize and define the observer  :
+        ```
+         viewModel.number.observe(viewLifecycleOwner, Observer {
+                    number ->
+                    if(number == 10){
+                        val action = HomeFragmentDirections.actionHomeFragmentToNumbersFragment()
+                        NavHostFragment.findNavController(this).navigate(action)
+                    }
+                })
+              ```
+
+
