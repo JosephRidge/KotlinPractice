@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -33,12 +34,13 @@ class HomeFragment : Fragment() {
             container,
             false)
 
-
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
         binding.addButotn.setOnClickListener {
-            viewModel.addNumber()
+           viewModel.addNumber()
            binding.numberText.text = viewModel.number.value.toString()
         }
+        binding.numberText.text = viewModel.number.value.toString()
         viewModel.number.observe(viewLifecycleOwner, Observer {
             number ->
             if(number == 10){

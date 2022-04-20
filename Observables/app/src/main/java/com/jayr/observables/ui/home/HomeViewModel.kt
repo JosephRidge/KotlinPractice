@@ -14,6 +14,6 @@ class HomeViewModel : ViewModel() {
     }
 
     fun addNumber(){
-        (_numbers.value)?.plus(1)
+       _numbers.value =  (_numbers.value)?.plus(1)
     }
 }
